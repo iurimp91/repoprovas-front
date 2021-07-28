@@ -57,4 +57,10 @@ export const ResetCSS = createGlobalStyle`
     strong {
         font-weight: 700;
     }
+
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        font-family: 'Arial';
+    }
 `;
