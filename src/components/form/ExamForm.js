@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import YearInput from "./YearInput";
 import SemesterInput from "./SemesterInput";
 import CategoryInput from "./CategoryInput";
 import SubjectInput from "./SubjectInput";
 import TeacherInput from "./TeacherInput";
 import PdfLinkInput from "./PdfLinkInput";
+import axios from "axios";
 
 export default function ExamForm() {
     const [year, setYear] = useState("");
@@ -14,17 +16,34 @@ export default function ExamForm() {
     const [subject, setSubject] = useState();
     const [teacher, setTeacher] = useState();
     const [link, setLink] = useState("");
+    const history = useHistory();
 
     function insertExam(e) {
         e.preventDefault();
-    }
+        const body = {
+            year,
+            semester,
+            categoryId: category,
+            subjectId: subject,
+            teacherId: teacher,
+            link
+        }
 
-    console.log(year);
-    console.log(semester);
-    console.log(category);
-    console.log(subject);
-    console.log(teacher);
-    console.log(link);
+        const request = axios.post("http://localhost:4000/exam", body);
+
+        request.then((response) => {
+            alert("Prova inserida!");
+            history.push("/");
+        });
+
+        request.catch((error) => {
+            if (error.response.status === 409) {
+                alert("Prova já cadastrada na plataforma.");
+            } else {
+                alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            }
+        });
+    }
 
     return(
         <Container>
@@ -35,7 +54,7 @@ export default function ExamForm() {
                 </div>
                 <CategoryInput setCategory={setCategory} />
                 <SubjectInput setSubject={setSubject} />
-                <TeacherInput setTeacher={setTeacher} />
+                <TeacherInput subject={subject} setTeacher={setTeacher} />
                 <PdfLinkInput link={link} setLink={setLink} /> 
                 <button type="submit">enviar</button>
             </form>
