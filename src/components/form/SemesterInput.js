@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 export default function SemesterInput({ setSemester }) {
     return(
         <>
@@ -14,19 +12,3 @@ export default function SemesterInput({ setSemester }) {
         </>
     );
 }
-
-const Container = styled.div`
-    height: inherit;
-    display: flex;
-
-    div {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center; 
-
-        input {
-            margin-right: 5px;
-        }
-    }
-`;
