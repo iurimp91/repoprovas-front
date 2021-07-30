@@ -54,6 +54,10 @@ export const ResetCSS = createGlobalStyle`
         box-sizing: border-box;
     }
 
+    input, span, button, a {
+        font-family: 'Arial';
+    }
+
     strong {
         font-weight: 700;
     }
@@ -61,6 +65,5 @@ export const ResetCSS = createGlobalStyle`
     a {
         text-decoration: none;
         cursor: pointer;
-        font-family: 'Arial';
     }
 `;
