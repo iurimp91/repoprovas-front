@@ -1,18 +1,28 @@
+import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
+import axios from "axios";
 
 export default function SubjectInput({ setSubject }) { 
-    const subjects = [
-        { id: 1, name: "Cálculo 1"},
-        { id: 2, name: "Cálculo 2"},
-        { id: 3, name: "Mecânica Vetorial"},
-    ];
+    const [subjectsList, setSubjectsList] = useState();
+
+    useEffect(() => {
+        const request = axios.get("http://localhost:4000/subjects");
+
+        request.then((response) => {
+            setSubjectsList(response.data);
+        });
+
+        request.catch((error) => {
+            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+        });
+    }, []);
     
     return(
         <Container>
             <span>matéria</span>
             <select required id="subjects" onChange={(e) => setSubject(e.target.value)} defaultValue="" >
                 <option disabled ></option>
-                {subjects.map(subject => (
+                {subjectsList?.map(subject => (
                     <option key={subject.id} value={subject.id}>{subject.name}</option>
                 ))}
             </select>
