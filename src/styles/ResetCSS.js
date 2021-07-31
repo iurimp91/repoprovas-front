@@ -62,7 +62,7 @@ export const ResetCSS = createGlobalStyle`
         font-weight: 700;
     }
 
-    a {
+    a, button {
         text-decoration: none;
         cursor: pointer;
     }

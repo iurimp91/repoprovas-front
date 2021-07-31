@@ -7,10 +7,10 @@ export default function TeacherInput({ setTeacher, subject }) {
     
     useEffect(() => {
         if (subject === undefined) return;
-        const request = axios.get(`http://localhost:4000/subjects/${subject}`);
+        const request = axios.get(`http://localhost:4000/teachers/${subject}`);
 
         request.then((response) => {
-            setTeachersList(response.data[0]);
+            setTeachersList(response.data);
         });
 
         request.catch((error) => {
@@ -27,7 +27,7 @@ export default function TeacherInput({ setTeacher, subject }) {
             <span>professor(a)</span>
             <select required id="teachers" onChange={(e) => setTeacher(e.target.value)} defaultValue="" >
                 <option disabled ></option>
-                {teachersList?.teachers.map(teacher => (
+                {teachersList?.map(teacher => (
                     <option key={teacher.id} value={teacher.id}>{teacher.name}</option>
                 ))}
             </select>

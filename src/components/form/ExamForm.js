@@ -23,9 +23,9 @@ export default function ExamForm() {
         const body = {
             year,
             semester,
-            categoryId: category,
-            subjectId: subject,
-            teacherId: teacher,
+            category: category,
+            subject: subject,
+            teacher: teacher,
             link
         }
 
