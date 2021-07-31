@@ -45,9 +45,5 @@ const Container = styled.header`
             margin-right: 7px;
             color: #ffffff;
         }
-
-        :hover {
-            background-color: #2e2e2e;
-        }
     }
 `;

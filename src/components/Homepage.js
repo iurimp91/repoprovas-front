@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { GeneralContainer } from "../styles/GeneralContainer";
 
 export default function Homepage() {
     return(
-        <GeneralContainer>
+        <Container>
             <Logo>RepoProvas</Logo>
             <ButtonContainer>
                 <Link to="/subjects">
@@ -14,9 +13,20 @@ export default function Homepage() {
                     por professor
                 </Link>
             </ButtonContainer>
-        </GeneralContainer>
+        </Container>
     );
 }
+
+export const Container = styled.div`
+    width: 100%;
+    height: calc(100vh - 30px);
+    background-color: #f2f2f2;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
 
 const Logo = styled.h1`
     font-size: 100px;
@@ -38,9 +48,5 @@ const ButtonContainer = styled.div`
         justify-content: center;
         font-size: 17px;
         color: #ffffff;
-
-        :hover {
-            background-color: #2e2e2e;
-        }
     }
 `;
