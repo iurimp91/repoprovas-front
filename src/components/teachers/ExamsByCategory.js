@@ -31,7 +31,6 @@ const Container = styled.div`
 
     a {
         width: 300px;
-        cursor: pointer;
         margin-bottom: 5px;
         color: #000000;
 

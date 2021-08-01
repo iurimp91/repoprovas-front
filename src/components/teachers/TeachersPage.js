@@ -20,7 +20,7 @@ export default function TeachersPage() {
         request.catch((error) => {
             alert("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
-    }, [searchTerm])
+    }, [searchTerm]);
 
     return(
         <Container>
