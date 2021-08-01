@@ -6,6 +6,7 @@ import Homepage from "./Homepage.js";
 import TeachersPage from "./teachers/TeachersPage.js";
 import TeacherExamsPage from "./teachers/TeacherExamsPage.js";
 import SubjectsPage from "./subjects/SubjectsPage.js";
+import SubjectExamsPage from "./subjects/SubjectExamsPage.js";
 import ExamPage from "./ExamPage.js";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route exact path="/subjects">
           <SubjectsPage />
+        </Route>
+        <Route exact path="/subjects/:id">
+          <SubjectExamsPage />
         </Route>
         <Route exact path="/exam/:id">
           <ExamPage />

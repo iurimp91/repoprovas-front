@@ -10,7 +10,10 @@ export default function SubjectsByPeriodList({ subjectsList, period }) {
         {subjectsList.map(subject => {
             if (subject.period === period) {
                 return(
-                    <Link to={`/subject/${subject.id}`}>{subject.name}</Link>
+                    <Link to={`/subjects/${subject.id}`}>
+                        <div className="subject"><span>{subject.name}</span></div>
+                        <div className="exams">provas {subject.exams.length}</div>
+                    </Link>
                 );
             }
         })}
@@ -24,15 +27,27 @@ const Container = styled.div`
     align-items: center;
     
     a {
+        width: 400px;
         margin-bottom: 5px;
         color: #000000;
+        display: flex;
+        justify-content: space-between;
+        
 
         :hover {
             text-decoration: underline;
         }
 
-        span:first-child {
-            margin-right: 30px;
+        .subject {
+            width: 175px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .exams {
+            width: 175px;
+            display: flex;
+            justify-content: flex-start;
         }
     }
 `;
