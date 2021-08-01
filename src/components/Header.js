@@ -40,6 +40,10 @@ const Container = styled.header`
         font-size: 17px;
         color: #ffffff;
 
+        :hover {
+            background-color: #2e2e2e;
+        }
+
         .icon {
             font-size: 20px;
             margin-right: 7px;

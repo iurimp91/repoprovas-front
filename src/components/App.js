@@ -4,6 +4,8 @@ import ExamForm from "./form/ExamForm.js";
 import Header from "./Header.js";
 import Homepage from "./Homepage.js";
 import TeachersPage from "./teachers/TeachersPage.js";
+import TeacherExamsPage from "./teachers/TeacherExamsPage.js";
+import ExamPage from "./ExamPage.js";
 
 function App() {
   return (
@@ -19,6 +21,12 @@ function App() {
         </Route>
         <Route exact path="/teachers">
           <TeachersPage />
+        </Route>
+        <Route exact path="/teachers/:id">
+          <TeacherExamsPage />
+        </Route>
+        <Route exact path="/exam/:id">
+          <ExamPage />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -55,6 +55,7 @@ const Title = styled.h1`
     font-size: 30px;
     margin-top: 60px;
     margin-bottom: 20px;
+    color: #2e2e2e;
 `;
 
 const Input = styled.input`
@@ -81,5 +82,9 @@ const TeachersContainer = styled.ul`
         background-color: #5e5e5e;
         padding: 0 10px;
         color: #ffffff;
+
+        :hover {
+            background-color: #2e2e2e;
+        }
     }
 `;

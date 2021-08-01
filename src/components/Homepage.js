@@ -48,5 +48,9 @@ const ButtonContainer = styled.div`
         justify-content: center;
         font-size: 17px;
         color: #ffffff;
+
+        :hover {
+            background-color: #2e2e2e;
+        }
     }
 `;

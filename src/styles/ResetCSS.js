@@ -65,9 +65,5 @@ export const ResetCSS = createGlobalStyle`
     a, button {
         text-decoration: none;
         cursor: pointer;
-
-        :hover {
-            background-color: #2e2e2e;
-        }
     }
 `;
