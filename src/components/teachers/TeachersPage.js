@@ -40,7 +40,7 @@ export default function TeachersPage() {
     );
 }
 
-export const Container = styled.div`
+const Container = styled.div`
     width: 100%;
     height: calc(100vh - 30px);
     background-color: #f2f2f2;

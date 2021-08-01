@@ -1,26 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import setCategoryName from "../../utils/setCategoryName";
 
 export default function ExamsByCategory({ categoryExams }) {
-    let categoryName;
-    
-    if (categoryExams.name === "P1") {
-        categoryName = "Prova 1";
-    } else if (categoryExams.name === "P2") {
-        categoryName = "Prova 2";
-    } else if (categoryExams.name === "P3") {
-        categoryName = "Prova 3";
-    } else if (categoryExams.name === "2ch") {
-        categoryName = "Prova Segunda Chamada";
-    } else {
-        categoryName = "Outras";
-    }
+    const categoryName = setCategoryName(categoryExams.name);
 
     return(
         <Container>
             <h1>{categoryName}</h1>
             {categoryExams.exams.map(exam => 
-                <Link className="exam" to={`/exam/${exam.id}`} >
+                <Link to={`/exam/${exam.id}`} target="_blank" rel="noopener noreferrer" >
                     <span>{exam.year} - {exam.semester}º semestre</span>
                     <span>{exam.subject.name}</span>
                 </Link>

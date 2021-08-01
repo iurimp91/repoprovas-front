@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ExamsByCategory from "./ExamsByCategory";
 
-export default function TeacherPage() {
+export default function TeacherExamsPage() {
     const { id } = useParams();
     const [teacherExams, setTeacherExams] = useState([]);
 
