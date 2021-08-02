@@ -7,7 +7,7 @@ export default function TeacherInput({ setTeacher, subject }) {
     
     useEffect(() => {
         if (subject === undefined) return;
-        const request = axios.get(`http://localhost:4000/teachers/${subject}`);
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/teachers/${subject}`);
 
         request.then((response) => {
             setTeachersList(response.data);

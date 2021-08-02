@@ -6,7 +6,7 @@ export default function CategoryInput({ setCategory }) {
     const [categoriesList, setCategoriesList] = useState();
 
     useEffect(() => {
-        const request = axios.get("http://localhost:4000/categories");
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/categories`);
 
         request.then((response) => {
             setCategoriesList(response.data);

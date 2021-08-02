@@ -10,7 +10,7 @@ export default function ExamPage() {
     const categoryName = setCategoryName(exam?.category.name);
 
     useEffect(() => {
-        const request = axios.get(`http://localhost:4000/exam/${id}`);
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/exam/${id}`);
 
         request.then((response) => {
             setExam(response.data);

@@ -8,7 +8,7 @@ export default function TeachersPage() {
     const [searchTerm, setSearchTerm] = useState("");
     
     useEffect(() => {
-        const request = axios.get("http://localhost:4000/teachers");
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/teachers`);
 
         request.then((response) => {
             const filteredTeachers = response.data.filter((teacher) => {

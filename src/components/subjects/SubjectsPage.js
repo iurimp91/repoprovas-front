@@ -8,7 +8,7 @@ export default function SubjectsPage() {
     const [periodsList, setPeriodsList] = useState([]);
     
     useEffect(() => {
-        const request = axios.get("http://localhost:4000/subjects");
+        const request = axios.get(`${process.env.REACT_APP_API_BASE_URL}/subjects`);
 
         request.then((response) => {
             setSubjectsList(response.data);
