@@ -2,14 +2,14 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ExamsByCategory from "./ExamsByCategory";
+import TeacherExamsByCategory from "./TeacherExamsByCategory";
 
 export default function TeacherExamsPage() {
     const { id } = useParams();
     const [teacherExams, setTeacherExams] = useState([]);
 
     useEffect(() => {
-        const request = axios.get(`http://localhost:4000/categories/${id}`);
+        const request = axios.get(`http://localhost:4000/categories/teacher/${id}`);
 
         request.then((response) => {
             setTeacherExams(response.data);
@@ -20,16 +20,14 @@ export default function TeacherExamsPage() {
         });
     }, []);
 
-    console.log(teacherExams);
-
     return(
         <Container>
             <Title>{teacherExams.teacherName}</Title>
             <ExamsContainer>
                 {teacherExams.examsByCategory?.length === 0
-                    ? <h1>Não há provas cadastras para esse(a) professor(a)</h1>
+                    ? <h1>Não há provas cadastradas para esse(a) professor(a)</h1>
                     : teacherExams.examsByCategory?.map(categoryExams =>
-                        <ExamsByCategory categoryExams={categoryExams} />    
+                        <TeacherExamsByCategory key={categoryExams.id} categoryExams={categoryExams} />    
                     )                    
                 }
             </ExamsContainer>

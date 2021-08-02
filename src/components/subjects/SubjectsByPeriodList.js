@@ -2,15 +2,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SubjectsByPeriodList({ subjectsList, period }) {
-    console.log(period);
-    console.log(subjectsList);
-
     return(
         <Container>
         {subjectsList.map(subject => {
             if (subject.period === period) {
                 return(
-                    <Link to={`/subjects/${subject.id}`}>
+                    <Link key={subject.id} to={`/subjects/${subject.id}`}>
                         <div className="subject"><span>{subject.name}</span></div>
                         <div className="exams">provas {subject.exams.length}</div>
                     </Link>

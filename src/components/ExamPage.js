@@ -3,7 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router";
 import setCategoryName from "../utils/setCategoryName";
-import ExamsByCategory from "./teachers/ExamsByCategory";
 
 export default function ExamPage() {
     const { id } = useParams();

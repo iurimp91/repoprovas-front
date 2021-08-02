@@ -27,10 +27,10 @@ export default function SubjectsPage() {
             <Title>disciplinas</Title>
             <SubjectsContainer>
                 {periodsList.map(period =>
-                    <>
-                        <h1>{period}{period !== "Eletiva" ? "º período" : ""}</h1>
-                        <SubjectsByPeriodList subjectsList={subjectsList} period={period} />
-                    </>
+                    <div key={period}>
+                        <h1 key={period.id} >{period}{period !== "Eletiva" ? "º período" : ""}</h1>
+                        <SubjectsByPeriodList key={period.id} subjectsList={subjectsList} period={period} />
+                    </div>
                 )}
             </SubjectsContainer>
         </Container>
@@ -54,19 +54,15 @@ const Title = styled.h1`
     color: #2e2e2e;
 `;
 
-const Input = styled.input`
-    width: 300px;
-    height: 40px;
-    font-size: 20px;
-    padding-left: 10px;
-    margin-bottom: 10px;
-`;
-
 const SubjectsContainer = styled.ul`
     width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    div {
+        text-align: center;
+    }
 
     h1 {
         font-size: 20px;

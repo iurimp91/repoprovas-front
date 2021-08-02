@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import setCategoryName from "../../utils/setCategoryName";
 
-export default function ExamsByCategory({ categoryExams }) {
+export default function SubjectExamsByCategory({ categoryExams }) {
     const categoryName = setCategoryName(categoryExams.name);
 
     return(
         <Container>
             <h1>{categoryName}</h1>
             {categoryExams.exams.map(exam => 
-                <Link to={`/exam/${exam.id}`} target="_blank" rel="noopener noreferrer" >
+                <Link key={exam.id} to={`/exam/${exam.id}`} target="_blank" rel="noopener noreferrer" >
                     <span>{exam.year} - {exam.semester}º semestre</span>
-                    <span>{exam.subject.name}</span>
+                    <span>{exam.teacher.name}</span>
                 </Link>
             )}
         </Container>
