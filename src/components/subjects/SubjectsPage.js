@@ -2,6 +2,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import SubjectsByPeriodList from "./SubjectsByPeriodList";
+import toast from "react-hot-toast";
+import Loading from "../Loading";
 
 export default function SubjectsPage() {
     const [subjectsList, setSubjectsList] = useState([]);
@@ -18,7 +20,7 @@ export default function SubjectsPage() {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, []);
 
@@ -26,12 +28,16 @@ export default function SubjectsPage() {
         <Container>
             <Title>disciplinas</Title>
             <SubjectsContainer>
-                {periodsList.map(period =>
-                    <div key={period}>
-                        <h1 key={period.id} >{period}{period !== "Eletiva" ? "º período" : ""}</h1>
-                        <SubjectsByPeriodList key={period.id} subjectsList={subjectsList} period={period} />
-                    </div>
-                )}
+                {   
+                    periodsList.length === 0 
+                    ? <Loading />
+                    :   periodsList?.map(period =>
+                            <div key={period}>
+                                <h1 key={period.id} >{period}{period !== "Eletiva" ? "º período" : ""}</h1>
+                                <SubjectsByPeriodList key={period.id} subjectsList={subjectsList} period={period} />
+                            </div>
+                        )
+                }
             </SubjectsContainer>
         </Container>
     );

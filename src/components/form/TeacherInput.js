@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function TeacherInput({ setTeacher, subject, disabled }) { 
     const [teachersList, setTeachersList] = useState();
@@ -15,9 +16,9 @@ export default function TeacherInput({ setTeacher, subject, disabled }) {
 
         request.catch((error) => {
             if (error.response.status === 404) {
-                alert("Não existe essa matéria na plataforma, tente novamente, por favor.");
+                toast.error("Não existe essa matéria na plataforma, tente novamente, por favor.");
             } else {
-                alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+                toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
             }
         });
     }, [subject]);

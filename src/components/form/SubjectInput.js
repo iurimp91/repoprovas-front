@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function SubjectInput({ setSubject, disabled }) { 
     const [subjectsList, setSubjectsList] = useState();
@@ -13,7 +14,7 @@ export default function SubjectInput({ setSubject, disabled }) {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, []);
     

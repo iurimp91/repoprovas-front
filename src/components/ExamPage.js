@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router";
 import setCategoryName from "../utils/setCategoryName";
+import toast from "react-hot-toast";
 
 export default function ExamPage() {
     const { id } = useParams();
@@ -17,14 +18,14 @@ export default function ExamPage() {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, [id]);
 
     return(
         <Container>
             <h1>{categoryName} - {exam?.year}/{exam?.semester} - {exam?.subject.name} - {exam?.teacher.name}</h1>
-            <object data="https://infoprovas.dcc.ufrj.br/provas/536.pdf" width="1000" height="1000" type="application/pdf">
+            <object data={exam?.link} width="1000" height="1000" type="application/pdf">
                 <p>Seu navegador não tem um plugin pra PDF</p>
             </object>
         </Container>

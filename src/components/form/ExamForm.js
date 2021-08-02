@@ -8,6 +8,8 @@ import SubjectInput from "./SubjectInput";
 import TeacherInput from "./TeacherInput";
 import PdfLinkInput from "./PdfLinkInput";
 import axios from "axios";
+import toast from "react-hot-toast";
+import Loading from "../Loading";
 
 export default function ExamForm() {
     const [year, setYear] = useState("");
@@ -34,7 +36,7 @@ export default function ExamForm() {
         const request = axios.post(`${process.env.REACT_APP_API_BASE_URL}/exam`, body);
 
         request.then((response) => {
-            alert("Prova inserida!");
+            toast.success("Prova inserida!");
             setDisabled(false);
             history.push("/");
         });
@@ -42,26 +44,31 @@ export default function ExamForm() {
         request.catch((error) => {
             setDisabled(false);
             if (error.response.status === 409) {
-                alert("Prova já cadastrada na plataforma.");
+                toast.error("Prova já cadastrada na plataforma.");
             } else {
-                alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+                toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
             }
         });
     }
 
     return(
         <Container>
-            <form onSubmit={insertExam}>
-                <div className="year-semester">
-                    <YearInput year={year} setYear={setYear} disabled={disabled} />
-                    <SemesterInput setSemester={setSemester} disabled={disabled} />
-                </div>
-                <CategoryInput setCategory={setCategory} disabled={disabled} />
-                <SubjectInput setSubject={setSubject} disabled={disabled} />
-                <TeacherInput subject={subject} setTeacher={setTeacher} disabled={disabled} />
-                <PdfLinkInput link={link} setLink={setLink} disabled={disabled} /> 
-                <button disabled={disabled} type="submit">enviar</button>
-            </form>
+            {
+                disabled === true
+                ? <Loading />
+                :
+                    <form onSubmit={insertExam}>
+                        <div className="year-semester">
+                            <YearInput year={year} setYear={setYear} disabled={disabled} />
+                            <SemesterInput setSemester={setSemester} disabled={disabled} />
+                        </div>
+                        <CategoryInput setCategory={setCategory} disabled={disabled} />
+                        <SubjectInput setSubject={setSubject} disabled={disabled} />
+                        <TeacherInput subject={subject} setTeacher={setTeacher} disabled={disabled} />
+                        <PdfLinkInput link={link} setLink={setLink} disabled={disabled} /> 
+                        <button disabled={disabled} type="submit">enviar</button>
+                    </form>
+            }
         </Container>
     );
 }
