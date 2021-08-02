@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
 import axios from "axios";
 
-export default function TeacherInput({ setTeacher, subject }) { 
+export default function TeacherInput({ setTeacher, subject, disabled }) { 
     const [teachersList, setTeachersList] = useState();
     
     useEffect(() => {
@@ -25,7 +25,7 @@ export default function TeacherInput({ setTeacher, subject }) {
     return(
         <Container>
             <span>professor(a)</span>
-            <select required id="teachers" onChange={(e) => setTeacher(e.target.value)} defaultValue="" >
+            <select disabled={disabled} required id="teachers" onChange={(e) => setTeacher(e.target.value)} defaultValue="" >
                 <option disabled ></option>
                 {teachersList?.map(teacher => (
                     <option key={teacher.id} value={teacher.id}>{teacher.name}</option>

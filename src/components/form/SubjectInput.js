@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
 import axios from "axios";
 
-export default function SubjectInput({ setSubject }) { 
+export default function SubjectInput({ setSubject, disabled }) { 
     const [subjectsList, setSubjectsList] = useState();
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function SubjectInput({ setSubject }) {
     return(
         <Container>
             <span>matéria</span>
-            <select required id="subjects" onChange={(e) => setSubject(e.target.value)} defaultValue="" >
+            <select disabled={disabled} required id="subjects" onChange={(e) => setSubject(e.target.value)} defaultValue="" >
                 <option disabled ></option>
                 {subjectsList?.map(subject => (
                     <option key={subject.id} value={subject.id}>{subject.name}</option>

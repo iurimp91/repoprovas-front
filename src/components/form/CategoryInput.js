@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "../../styles/FormFieldsContainer";
 import axios from "axios";
 
-export default function CategoryInput({ setCategory }) { 
+export default function CategoryInput({ setCategory, disabled }) { 
     const [categoriesList, setCategoriesList] = useState();
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function CategoryInput({ setCategory }) {
     return(
         <Container>
             <span>categoria</span>
-            <select required id="categories" onChange={(e) => setCategory(e.target.value)} defaultValue="" >
+            <select disabled={disabled} required id="categories" onChange={(e) => setCategory(e.target.value)} defaultValue="" >
                 <option disabled ></option>
                 {categoriesList?.map(category => (
                     <option key={category.id} value={category.id}>{category.name}</option>

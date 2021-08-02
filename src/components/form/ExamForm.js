@@ -17,9 +17,11 @@ export default function ExamForm() {
     const [teacher, setTeacher] = useState();
     const [link, setLink] = useState("");
     const history = useHistory();
+    const [disabled, setDisabled] = useState(false);
 
     function insertExam(e) {
         e.preventDefault();
+        setDisabled(true);
         const body = {
             year,
             semester,
@@ -33,10 +35,12 @@ export default function ExamForm() {
 
         request.then((response) => {
             alert("Prova inserida!");
+            setDisabled(false);
             history.push("/");
         });
 
         request.catch((error) => {
+            setDisabled(false);
             if (error.response.status === 409) {
                 alert("Prova já cadastrada na plataforma.");
             } else {
@@ -49,14 +53,14 @@ export default function ExamForm() {
         <Container>
             <form onSubmit={insertExam}>
                 <div className="year-semester">
-                    <YearInput year={year} setYear={setYear} />
-                    <SemesterInput setSemester={setSemester} />
+                    <YearInput year={year} setYear={setYear} disabled={disabled} />
+                    <SemesterInput setSemester={setSemester} disabled={disabled} />
                 </div>
-                <CategoryInput setCategory={setCategory} />
-                <SubjectInput setSubject={setSubject} />
-                <TeacherInput subject={subject} setTeacher={setTeacher} />
-                <PdfLinkInput link={link} setLink={setLink} /> 
-                <button type="submit">enviar</button>
+                <CategoryInput setCategory={setCategory} disabled={disabled} />
+                <SubjectInput setSubject={setSubject} disabled={disabled} />
+                <TeacherInput subject={subject} setTeacher={setTeacher} disabled={disabled} />
+                <PdfLinkInput link={link} setLink={setLink} disabled={disabled} /> 
+                <button disabled={disabled} type="submit">enviar</button>
             </form>
         </Container>
     );

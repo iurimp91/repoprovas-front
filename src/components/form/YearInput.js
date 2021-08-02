@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-export default function YearInput({ year, setYear }) {
+export default function YearInput({ year, setYear, disabled }) {
     const currentYear = dayjs().year();
     
     return(
@@ -9,6 +9,7 @@ export default function YearInput({ year, setYear }) {
             <label>
                 <span>ano</span>
                 <input
+                    disabled={disabled}
                     required
                     type="number"
                     min="2000"
