@@ -2,6 +2,8 @@ import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import Loading from "../Loading";
 
 export default function TeachersPage() {
     const [teachersList, setTeachersList] = useState([]);
@@ -18,7 +20,7 @@ export default function TeachersPage() {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, [searchTerm]);
 
@@ -27,14 +29,19 @@ export default function TeachersPage() {
             <Title>professores</Title>
             <Input type="text" placeholder="pesquisar" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} />
             <TeachersContainer>
-                {teachersList.length === 0
-                    ? <h1>sem resultados</h1> 
-                    : teachersList?.map(teacher => (
-                    <Link key={teacher.id} to={`/teachers/${teacher.id}`} >
-                        <span>{teacher.name}</span>
-                        <span>provas {teacher.exams.length}</span>
-                    </Link>
-                ))}
+                {teachersList.length === 0 && searchTerm === ""
+                    ? <Loading /> 
+                    : (
+                        teachersList.length === 0 && searchTerm !== "" 
+                        ? <h1>sem resultados</h1> 
+                        : teachersList?.map(teacher => (
+                            <Link key={teacher.id} to={`/teachers/${teacher.id}`} >
+                                <span>{teacher.name}</span>
+                                <span>provas {teacher.exams.length}</span>
+                            </Link>
+                        )
+                    )
+                )}
             </TeachersContainer>
         </Container>
     );

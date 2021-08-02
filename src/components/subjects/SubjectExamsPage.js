@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SubjectExamsByCategory from "./SubjectExamsByCategory";
+import toast from "react-hot-toast";
 
 export default function SubjectExamsPage() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ export default function SubjectExamsPage() {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, [id]);
 

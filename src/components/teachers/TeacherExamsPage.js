@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TeacherExamsByCategory from "./TeacherExamsByCategory";
+import toast from "react-hot-toast";
 
 export default function TeacherExamsPage() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ export default function TeacherExamsPage() {
         });
 
         request.catch((error) => {
-            alert("Algo deu errado com sua requisição, atualize a página, por favor.");
+            toast.error("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
     }, [id]);
 
