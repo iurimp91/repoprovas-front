@@ -19,9 +19,7 @@ export default function ExamPage() {
         request.catch((error) => {
             alert("Algo deu errado com sua requisição, atualize a página, por favor.");
         });
-    }, []);
-
-    console.log(exam);
+    }, [id]);
 
     return(
         <Container>

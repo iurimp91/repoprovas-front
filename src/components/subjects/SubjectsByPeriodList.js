@@ -2,18 +2,16 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SubjectsByPeriodList({ subjectsList, period }) {
+    const filteredSubjectsList = subjectsList.filter(subject => subject.period === period);
+
     return(
         <Container>
-        {subjectsList.map(subject => {
-            if (subject.period === period) {
-                return(
-                    <Link key={subject.id} to={`/subjects/${subject.id}`}>
-                        <div className="subject"><span>{subject.name}</span></div>
-                        <div className="exams">provas {subject.exams.length}</div>
-                    </Link>
-                );
-            }
-        })}
+        {filteredSubjectsList.map(subject =>         
+            <Link key={subject.id} to={`/subjects/${subject.id}`}>
+                <div className="subject"><span>{subject.name}</span></div>
+                <div className="exams">provas {subject.exams.length}</div>
+            </Link>
+        )}
         </Container>
     );
 }
