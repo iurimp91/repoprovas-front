@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SubjectExamsByCategory from "./SubjectExamsByCategory";
 import toast from "react-hot-toast";
+import Loading from "../Loading";
 
 export default function SubjectExamsPage() {
     const { id } = useParams();
@@ -23,12 +24,19 @@ export default function SubjectExamsPage() {
 
     return(
         <Container>
-            <Title>{subjectExams.subjectName}</Title>
+            <Title>{subjectExams?.subjectName}</Title>
             <ExamsContainer>
-                {subjectExams.examsByCategory?.length === 0
-                    ? <h1>Não há provas cadastradas para essa disciplina</h1>
-                    : subjectExams.examsByCategory?.map(categoryExams =>
-                        <SubjectExamsByCategory key={categoryExams.id} categoryExams={categoryExams} />    
+                {   subjectExams.length === 0
+                    ? <div className="loading" ><Loading /></div>
+                    : (
+                        subjectExams.examsByCategory?.length === 0
+                        ? <h1>Não há provas cadastradas para essa disciplina</h1>
+                        : subjectExams.examsByCategory?.map(categoryExams =>
+                            <SubjectExamsByCategory
+                                key={categoryExams.id}
+                                categoryExams={categoryExams}
+                            />    
+                        )
                     )                    
                 }
             </ExamsContainer>
@@ -60,5 +68,11 @@ const ExamsContainer = styled.ul`
         margin-top: 20px;
         font-size: 20px;
         text-align: center;
+    }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
     }
 `;

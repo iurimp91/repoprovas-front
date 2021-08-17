@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TeacherExamsByCategory from "./TeacherExamsByCategory";
 import toast from "react-hot-toast";
+import Loading from "../Loading";
 
 export default function TeacherExamsPage() {
     const { id } = useParams();
@@ -23,12 +24,19 @@ export default function TeacherExamsPage() {
 
     return(
         <Container>
-            <Title>{teacherExams.teacherName}</Title>
+            <Title>{teacherExams?.teacherName}</Title>
             <ExamsContainer>
-                {teacherExams.examsByCategory?.length === 0
-                    ? <h1>Não há provas cadastradas para esse(a) professor(a)</h1>
-                    : teacherExams.examsByCategory?.map(categoryExams =>
-                        <TeacherExamsByCategory key={categoryExams.id} categoryExams={categoryExams} />    
+                {   teacherExams.length === 0
+                    ? <div className="loading" ><Loading /></div>
+                    : (
+                        teacherExams.examsByCategory?.length === 0
+                        ? <h1>Não há provas cadastradas para esse(a) professor(a)</h1>
+                        : teacherExams.examsByCategory?.map(categoryExams =>
+                            <TeacherExamsByCategory
+                                key={categoryExams.id}
+                                categoryExams={categoryExams}
+                            />    
+                        )
                     )                    
                 }
             </ExamsContainer>
@@ -60,5 +68,11 @@ const ExamsContainer = styled.ul`
         margin-top: 20px;
         font-size: 20px;
         text-align: center;
+    }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
     }
 `;
