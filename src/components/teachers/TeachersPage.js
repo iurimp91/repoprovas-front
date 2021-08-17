@@ -30,7 +30,7 @@ export default function TeachersPage() {
             <Input type="text" placeholder="pesquisar" onChange={(e) => setSearchTerm(e.target.value)} value={searchTerm} />
             <TeachersContainer>
                 {teachersList.length === 0 && searchTerm === ""
-                    ? <Loading /> 
+                    ? <div className="loading" ><Loading /></div> 
                     : (
                         teachersList.length === 0 && searchTerm !== "" 
                         ? <h1>sem resultados</h1> 
@@ -93,5 +93,11 @@ const TeachersContainer = styled.ul`
         :hover {
             background-color: #2e2e2e;
         }
+    }
+
+    .loading {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
     }
 `;

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import setCategoryName from "../utils/setCategoryName";
 import toast from "react-hot-toast";
+import Loading from "./Loading";
 
 export default function ExamPage() {
     const { id } = useParams();
@@ -23,16 +24,21 @@ export default function ExamPage() {
     }, [id]);
 
     return(
-        <Container>
+        <Container exam={exam} >
             <h1>{categoryName} - {exam?.year}/{exam?.semester} - {exam?.subject.name} - {exam?.teacher.name}</h1>
-            <object data={exam?.link} width="1000" height="1000" type="application/pdf">
-                <p>Seu navegador não tem um plugin pra PDF</p>
-            </object>
+            {
+                exam === undefined
+                ? <Loading />
+                : <object data={exam?.link} width="1000" height="1000" type="application/pdf">
+                    <p>Seu navegador não tem um plugin pra PDF</p>
+                </object>
+            }
         </Container>
     );
 }
 
 const Container = styled.div`
+    height: ${props => props.exam ? "auto" : "calc(100vh - 30px)"};
     width: 100%;
     background-color: #f2f2f2;
     margin-top: 30px;

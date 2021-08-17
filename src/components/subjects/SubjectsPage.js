@@ -30,7 +30,7 @@ export default function SubjectsPage() {
             <SubjectsContainer>
                 {   
                     periodsList.length === 0 
-                    ? <Loading />
+                    ? <div className="loading"><Loading /></div>
                     :   periodsList?.map(period =>
                             <div key={period}>
                                 <h1 key={period.id} >{period}{period !== "Eletiva" ? "º período" : ""}</h1>
@@ -74,5 +74,9 @@ const SubjectsContainer = styled.ul`
         font-size: 20px;
         margin-top: 20px;
         margin-bottom: 10px;
+    }
+
+    .loading {
+        margin-top: 50px;
     }
 `;
